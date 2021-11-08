@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/tests/ft_main_test",
+      "args": [ ],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "debug_test"
+    },
+    {
+      "name": "Debug small test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [ ],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "debug_small_test"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "/Users/mmeersma/Documents/my_files/1.3_get_next_line",
+      "environment": [],
+      "program": "/Users/mmeersma/Documents/my_files/1.3_get_next_line/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "lldb",
+      "miDebuggerPath": "/usr/bin/lldb",
+      "externalConsole": false
+    }
+  ]
+}

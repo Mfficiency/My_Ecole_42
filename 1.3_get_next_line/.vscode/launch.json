@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug main",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [
+        "../set/grid_121",
+        "../set/grid_222",
+        "../set/grid_223"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "debug_main"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "/Users/mmeersma/Documents/my_files/1.3_get_next_line",
+      "environment": [],
+      "program": "/Users/mmeersma/Documents/my_files/1.3_get_next_line/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "lldb",
+      "miDebuggerPath": "/usr/bin/lldb",
+      "externalConsole": false
+    }
+  ]
+}
