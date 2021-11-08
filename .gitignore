@@ -53,7 +53,7 @@ dkms.conf
 
 # General stuff
 ./.git
-.pdf
+*.pdf
 
 ### Below combination will ignore all files without extension ###
 # Ignore all
@@ -65,6 +65,7 @@ dkms.conf
 # Unignore all dirs
 !*/
 !Makefile
+!*Makefile
 !./Makefile
 !*/Makefile
 !1.2_printf/Makefile
