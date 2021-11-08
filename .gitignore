@@ -1,3 +1,19 @@
+### Below combination will ignore all files without extension ###
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+!Makefile
+!*Makefile
+!./Makefile
+!*/Makefile
+!1.2_printf/Makefile
+### Above combination will ignore all files without extension ###
+
 # Prerequisites
 *.d
 
@@ -54,23 +70,6 @@ dkms.conf
 # General stuff
 ./.git
 *.pdf
-*.subject.pdf
-
-### Below combination will ignore all files without extension ###
-# Ignore all
-*
-
-# Unignore all with extensions
-!*.*
-
-# Unignore all dirs
-!*/
-!Makefile
-!*Makefile
-!./Makefile
-!*/Makefile
-!1.2_printf/Makefile
-### Above combination will ignore all files without extension ###
 
 # Try to remove the pescy main.dSYM
 /DWARF
