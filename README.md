@@ -18,7 +18,7 @@ My excercises of ecole 42 (started in 2021)
 |   |        |
 |   |        |
   
-minor edit
+minor edit2
 ## Interesting links
 - [rchallie's printf](https://github.com/rchallie/ft_printf)    
 <br>
