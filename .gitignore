@@ -54,6 +54,7 @@ dkms.conf
 # General stuff
 ./.git
 *.pdf
+*.subject.pdf
 
 ### Below combination will ignore all files without extension ###
 # Ignore all
