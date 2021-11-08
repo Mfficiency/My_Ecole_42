@@ -15,18 +15,5 @@
   "C_Cpp_Runner.cppStandard": "",
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false,
-  "search.exclude": {
-    "**/*.code-search": false,
-    "**/bower_components": false,
-    "**/node_modules": false
-  },
-  "search.useGlobalIgnoreFiles": true,
-  "files.exclude": {
-    "**/.DS_Store": false,
-    "**/.git": false,
-    "**/.hg": false,
-    "**/.svn": false,
-    "**/CVS": false
-  }
+  "C_Cpp_Runner.warningsAsError": false
 }

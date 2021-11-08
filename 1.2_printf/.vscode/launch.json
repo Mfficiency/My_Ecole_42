@@ -1,6 +1,14 @@
 {
   "version": "0.2.0",
   "configurations": [
+  {
+    "name": "(lldb) Attach",
+    "type": "cppdbg",
+    "request": "attach",
+    "program": "enter program name, for example ${workspaceFolder}/a.out",
+    "processId": "${command:pickProcess}",
+    "MIMode": "lldb"
+  },
     {
       "name": "Debug test",
       "type": "cppdbg",
@@ -33,9 +41,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "/Users/mm/Documents/my_files/1.3_get_next_line",
+      "cwd": "/Users/mmeersma/Documents/public_files/1.3_get_next_line",
       "environment": [],
-      "program": "/Users/mm/Documents/my_files/1.3_get_next_line/build/Debug/outDebug",
+      "program": "/Users/mmeersma/Documents/public_files/1.3_get_next_line/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "lldb",
       "miDebuggerPath": "/usr/bin/lldb",
