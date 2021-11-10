@@ -73,3 +73,4 @@ dkms.conf
 
 # Try to remove the pescy main.dSYM
 /DWARF
+!pft/

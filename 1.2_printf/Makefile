@@ -6,11 +6,11 @@
 #    By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/19 10:32:22 by mmeersma          #+#    #+#              #
-#    Updated: 2021/11/10 17:07:06 by mmeersma         ###   ########.fr        #
+#    Updated: 2021/11/10 17:23:52 by mmeersma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= libft.a
+NAME 		= libftprintf.a
 
 FILES 		= ft_printf.c \
 				./sources/ft_handle_c.c \
