@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_handle_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mm <mm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:29:31 by mm          #+#    #+#             */
-/*   Updated: 2021/11/03 14:29:34 by mm         ###   ########.fr       */
+/*   Created: 2021/11/10 14:11:39 by mmeersma          #+#    #+#             */
+/*   Updated: 2021/11/10 16:29:40 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strdup(const char *s)
+int	ft_handle_u(unsigned int num)
 {
-	char	*ret;
-	int		i;
-	int		len;
+	char	*str;
+	int		char_count;
 
-	i = 0;
-	len = ft_strlen(s);
-	ret = (char *)malloc((len + 1) * sizeof(char));
-	if (ret == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		ret[i] = s[i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
+	char_count = 0;
+	str = ft_unsigned_itoa(num);
+	char_count = ft_putstr_count(str);
+	free(str);
+	return (char_count);
 }

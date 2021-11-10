@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_handle_x.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mm <mm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 13:57:45 by mm          #+#    #+#             */
-/*   Updated: 2021/11/03 13:57:59 by mm         ###   ########.fr       */
+/*   Created: 2021/11/10 14:11:39 by mmeersma          #+#    #+#             */
+/*   Updated: 2021/11/10 16:56:58 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "../includes/ft_printf.h"
+
+int	ft_handle_x(unsigned int num)
 {
-	return (c >= 0 && c <= 127);
+	char	*hex;
+	int		char_count;
+
+	char_count = 0;
+	hex = ft_itoa_base(num, 16);
+	hex = ft_str_tolower(hex);
+	char_count += ft_putstr_count(hex);
+	free(hex);
+	return (char_count);
 }

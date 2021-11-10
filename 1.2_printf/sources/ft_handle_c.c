@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_handle_c.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mm <mm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:19:54 by mm          #+#    #+#             */
-/*   Updated: 2021/11/03 14:19:57 by mm         ###   ########.fr       */
+/*   Created: 2021/11/10 14:11:39 by mmeersma          #+#    #+#             */
+/*   Updated: 2021/11/10 17:01:27 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_handle_c(char c)
 {
-	size_t	i;
+	int	char_count;
 
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (i < n - 1 && ((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
-		i++;
-	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	char_count = ft_putchar_count(c);
+	return (char_count);
 }

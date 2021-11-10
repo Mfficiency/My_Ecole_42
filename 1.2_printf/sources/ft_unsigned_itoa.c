@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_unsigned_iota.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mm <mm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:18:37 by mm          #+#    #+#             */
-/*   Updated: 2021/11/03 14:18:42 by mm         ###   ########.fr       */
+/*   Created: 2021/11/10 14:55:56 by mmeersma          #+#    #+#             */
+/*   Updated: 2021/11/10 16:38:55 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-static int	ft_nbdigits(int nb)
+// returns amount of digits in a given number
+static unsigned int	ft_nbdigits(unsigned int nb)
 {
-	int				res;
 	unsigned int	unsigned_nb;
+	unsigned int	res;
 
 	if (nb < 0)
 		unsigned_nb = nb * -1;
@@ -30,9 +31,10 @@ static int	ft_nbdigits(int nb)
 	return (res);
 }
 
-static int	ft_cnt_len(int n)
+// returns amount of digits in a given number + negative
+static int	ft_intlen(unsigned int n)
 {
-	int	len;
+	unsigned int	len;
 
 	if (n < 0)
 		len = ft_nbdigits(n) + 1;
@@ -41,7 +43,8 @@ static int	ft_cnt_len(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+// same as itoa but for unsigned numbers
+char	*ft_unsigned_itoa(unsigned int n)
 {
 	char	*res;
 	int		len;
@@ -50,7 +53,7 @@ char	*ft_itoa(int n)
 	nbr = n;
 	if (nbr < 0)
 		nbr *= -1;
-	len = ft_cnt_len(n);
+	len = ft_intlen(n);
 	res = (char *)malloc(sizeof(char) * len + 1);
 	if (res == NULL)
 		return (NULL);

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_handle_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mm <mm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:33:09 by mm          #+#    #+#             */
-/*   Updated: 2021/11/03 14:33:13 by mm         ###   ########.fr       */
+/*   Created: 2021/11/10 14:11:39 by mmeersma          #+#    #+#             */
+/*   Updated: 2021/11/10 14:59:38 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_handle_int(int num)
 {
-	size_t	i;
+	char	*str;
+	int		char_count;
 
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (i < n - 1 && s1[i] == s2[i] && s1[i])
-		i++;
-	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	char_count = 0;
+	str = ft_itoa_base(num, 10);
+	char_count = ft_putstr_count(str);
+	free(str);
+	return (char_count);
 }
