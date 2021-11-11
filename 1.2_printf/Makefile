@@ -6,7 +6,7 @@
 #    By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/19 10:32:22 by mmeersma          #+#    #+#              #
-#    Updated: 2021/11/11 13:01:14 by mmeersma         ###   ########.fr        #
+#    Updated: 2021/11/11 13:29:54 by mmeersma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,10 @@ FILES 		= ft_printf.c \
 				./sources/ft_strlen.c \
 				./sources/ft_unsigned_itoa.c 
 OBJECTS		= ${FILES:.c=.o}
-CC			= gcc -c #$(CFLAGS)
+CC			= gcc -c 
 AR			= ar rc
 RM 			= rm -f
 
-TINCLUDES	= ./includes/ft_printf.h ./tests/testlib.h
-CTFLAGS 	= -Wall -Wextra -Werror -I./${TINCLUDES} 
-TESTDIR		= tests
 TESTFILES	= ${FILES} \
 				./tests/ft_main_test.c 
 

@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:55:56 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/11 13:07:40 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:31:06 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ static int	ft_intlen(int n, int base)
 	else
 		len = ft_nbdigits(n, base);
 	return (len);
-}
-
-void	printres(char *res)
-{
-	printf("RES: %s\n",res);
 }
 
 char	*ft_itoa(int num, int base)
