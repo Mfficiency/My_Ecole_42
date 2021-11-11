@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:09:05 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/11 10:59:17 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/11 11:24:26 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ int	main(void)
 	red();
 	printf("\nvvv--------------vvv\n");
 	reset();
-	ft_printf("test %d\n", -2);
+	//ft_printf("%d\n", 2);
+	//ft_printf("%u\n", 2);
+	ft_printf("%p\n", 2);
+	ft_printf("%d\n", -2);
 	red();
 	printf("^^^--------------^^^\n\n");
 	reset();
