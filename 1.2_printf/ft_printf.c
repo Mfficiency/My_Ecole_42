@@ -6,18 +6,15 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:14:09 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/11 11:15:29 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:15:33 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
 /* 
-TODO: - use putchar  ,fix makefile
-TODO: - count input
-TODO: - return count
-TODO: - make extensive test
-TODO: - makefile should still be working
+TODO: - test github upload
+TODO: - test norm
 */
 
 int	ft_is_conv(char c)
@@ -38,7 +35,7 @@ int	ft_handle_conv(int type, va_list args)
 	else if (type == 'p')
 		i = ft_handle_p(va_arg(args, size_t));
 	else if (type == 'd' || type == 'i')
-		i = ft_handle_i(va_arg(args, size_t));
+		i = ft_handle_i(va_arg(args, int));
 	else if (type == 'u')
 		i = ft_handle_u(va_arg(args, unsigned int));
 	else if (type == 'x')
