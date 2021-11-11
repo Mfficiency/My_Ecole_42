@@ -41,27 +41,43 @@ Change window size to 200% "Virtual Screen 1 >"
 ![Alt text](Screen%20Shot%202021-11-11%20at%203.00.46%20PM.png)
 
 ##  Install Debian (https://www.wikihow.com/Install-Debian)
-	1. Click Install
-	2. Language: english
-	3.  country sziss
-	4.  us
-	5.  us
-	6.  mmeersma42
-	7.  continue
-	8.  pass: admin123
-	9.  meersma
-	10. admin123
-	11. encripted partition
-	12. pharaphrase: admin123
-	13. max partition
-	14. finish
-	15. ok
-	16. grab
-	17. swiss
-	18. debian,org
-	19. keep only ssh?
-	20. grub install
-	21. yes
+	1.	Click Install
+	2.	Language: English
+	3.	country: Other, Europe, Switzerland
+	4.	Locale settings: United States
+	4.	Keymap to use: American English
+	5.	Hostname: mmeersma42
+	7.	Domain name: Continue
+	8.	Root password: admin123 / admin
+	9.	Full name for new user: mmeersma
+	10.	Username for your account: mmeersma
+	10.	password: admin123 / admin
+### Partition disks
+1. Guided - use entire disk and set up encrypted LVM
+2. Select harddisk
+3. Separate / home partition
+4. Yes
+5. Encryption passphrase: admin123 / admin
+6. If weak, yes
+7. Amount of volume: max
+8. Finish partitioning
+9. Write changes: yes
+10. Scan extra installation media?: No?
+11. Mirror country: Switzerland
+12. Debian archive mirror: deb.debian.org
+13. HTTP proxy: none
+14. Participate in the package usage survey?: No
+15. Choose software to install: SSH server only?
+16. install the grub bootloader: Yes
+17. select dev/sda
+18. Continue
+## Getting started
+1. installadmin
+admin
+login: mmeersma
+admin
+doneapt
+
 
 
 
