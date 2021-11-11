@@ -18,6 +18,7 @@
   "C_Cpp_Runner.warningsAsError": false,
   "files.associations": {
     "ft_printf.h": "c",
-    "sstream": "c"
+    "sstream": "c",
+    "testlib.h": "c"
   }
 }

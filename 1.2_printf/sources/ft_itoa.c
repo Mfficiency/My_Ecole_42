@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:55:56 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/11 11:31:31 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:07:40 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,46 @@ static unsigned int	ft_nbdigits(int nb, int base)
 	return (res);
 }
 
+static int	ft_intlen(int n, int base)
+{
+	unsigned int	len;
+
+	if (n < 0)
+		len = ft_nbdigits(n, base) + 1;
+	else
+		len = ft_nbdigits(n, base);
+	return (len);
+}
+
+void	printres(char *res)
+{
+	printf("RES: %s\n",res);
+}
+
 char	*ft_itoa(int num, int base)
 {
 	char	*res;
 	int		len;
-	int		nbr;
+	long	nbr;
 
 	nbr = num;
 	if (nbr == 0)
 		return (ft_strdup("0"));
-	len = ft_nbdigits(num, base);
+	if (nbr < 0)
+		nbr *= -1;
+	len = ft_intlen(num, base);
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (res == NULL)
 		return (NULL);
 	res[len--] = '\0';
-	while (nbr != 0)
+	while (nbr > 0)
 	{
-		if ((nbr % base) < 10)
-			res[len] = (nbr % base) + 48;
-		else
-			res[len] = (nbr % base) + 55;
+		res[len--] = nbr % base + '0';
 		nbr /= base;
-		len--;
-	}	
+	}
+	if (len == 0 && res[1] == '\0')
+		*(res + len) = '0';
+	else if (len == 0 && res[1] != '\0')
+		*(res + len) = '-';
 	return (res);
 }
