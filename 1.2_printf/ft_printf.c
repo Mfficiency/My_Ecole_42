@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:14:09 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/10 17:00:13 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/11 11:15:29 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_handle_conv(int type, va_list args)
 	else if (type == 'p')
 		i = ft_handle_p(va_arg(args, size_t));
 	else if (type == 'd' || type == 'i')
-		i = ft_handle_int(va_arg(args, int));
+		i = ft_handle_i(va_arg(args, size_t));
 	else if (type == 'u')
 		i = ft_handle_u(va_arg(args, unsigned int));
 	else if (type == 'x')

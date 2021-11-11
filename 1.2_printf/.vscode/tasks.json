@@ -8,7 +8,7 @@
                 "-g",
                 "${workspaceFolder}/tests/ft_main_test.c",
                 "${workspaceFolder}/ft_printf.c",
-                "${workspaceFolder}/sources/ft_putstr.c",
+                "${workspaceFolder}/sources/*.c",
                 "-o",
                 "${workspaceFolder}/tests/ft_main_test"
             ],
