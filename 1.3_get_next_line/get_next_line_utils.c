@@ -12,29 +12,29 @@
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len, int f)
 {
 	char	*newstr;
 	size_t	max_len;
 	size_t	i;
+	size_t 	s_len;
 
 	i = 0;
+	s_len = ft_strlen(s);
 	if (!s)
 		return (NULL);
-	if (len > ft_strlen(s) + 1)
-		max_len = ft_strlen(s) + 1;
+	if (len > s_len + 1)
+		max_len = s_len + 1;
 	else
 		max_len = len;
 	newstr = (char *)malloc(sizeof(char) * (max_len + 1));
 	if (!newstr)
 		return (NULL);
-	while (start < ft_strlen(s) && i < max_len)
-	{
-		newstr[i] = s[start];
-		i++;
-		start++;
-	}
+	while (start < s_len && i < max_len)
+		newstr[i++] = s[start++];
 	newstr[i] = '\0';
+	if (f == 1)
+		free(s);
 	return (newstr);
 }
 
@@ -58,7 +58,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strdup(char *s, int f)
 {
 	char	*ret;
 	int		i;
@@ -77,6 +77,8 @@ char	*ft_strdup(char *s)
 		i++;
 	}
 	ret[i] = '\0';
+	if (f == 1)
+		free(s);
 	return (ret);
 }
 
