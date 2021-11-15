@@ -2,6 +2,29 @@
 Step by step guide on how to do it.
 
 ## TODO : Reinstall at home and rewrite last steps
+- [Born2beroot](#born2beroot)
+	- [TODO : Reinstall at home and rewrite last steps](#todo--reinstall-at-home-and-rewrite-last-steps)
+	- [Prep](#prep)
+		- [Install VirtualBox](#install-virtualbox)
+		- [Downloading Debian (https://www.wikihow.com/Install-Debian-in-Virtualbox)](#downloading-debian-httpswwwwikihowcominstall-debian-in-virtualbox)
+		- [Launch VirtualBox](#launch-virtualbox)
+		- [Create New VM](#create-new-vm)
+		- [Start the VM](#start-the-vm)
+	- [Install Debian (https://www.wikihow.com/Install-Debian)](#install-debian-httpswwwwikihowcominstall-debian)
+		- [Partition disks](#partition-disks)
+	- [Config](#config)
+		- [Login](#login)
+		- [Check partitions](#check-partitions)
+		- [Change user](#change-user)
+		- [Install sudo](#install-sudo)
+		- [Create groups](#create-groups)
+		- [Config SSH](#config-ssh)
+		- [Install UFW](#install-ufw)
+		- [Config Sudo](#config-sudo)
+		- [Setup strong password policy](#setup-strong-password-policy)
+	- [Network adapter config](#network-adapter-config)
+	- [Monitoring.sh](#monitoringsh)
+		- [Prep](#prep-1)
 
 ## Prep
 ### Install VirtualBox
@@ -79,6 +102,7 @@ Change window size to 200% "Virtual Screen 1 >"
 	18. Continue
 
 ## Config 
+same steps less/different detail: https://github.com/HEADLIGHTER/Born2BeRoot-42/blob/main/walkthrough37.txt
 ### Login
 	1. use login
 
@@ -95,11 +119,13 @@ su *username* (change to  username)
 2. $ apt install sudo
 
 ### Create groups
+Video explaining groups: https://www.youtube.com/watch?v=7cRaGaIZQlo
 1. $ sudo addgroup user42
 2. $ sudo adduser mmeersma user42
 3. $ sudo apt update
 
 ### Config SSH
+Video explaining ssh: https://www.youtube.com/watch?v=qWKK_PNHnnA
 1. (if ssh not installed yet) $ sudo apt install openssh-server
 2. $ sudo nano /etc/ssh/sshd_config
 3. change line "#Port 22" to "Port 4242"
@@ -109,6 +135,76 @@ su *username* (change to  username)
 7. $ sudo nano /etc/ssh/ssh_config
 8. change line "#Port 22" to "Port 4242"
 9. save and exit
-10. Check the status: $ sudo service ssh status (It should be active (running).)
+10. Check the status: $ sudo service ssh status  (It should be active (running).)
 
 ### Install UFW
+Video explaining UFW: https://youtu.be/-CzvPjZ9hp8?t=170
+1. $ sudo apt install ufw
+2. $ sudo ufw enable
+3. $ sudo ufw allow 4242
+4. $ sudo ufw status  It's should be active with 4242 and 4242(v6) ports allow
+from anywhere
+
+### Config Sudo
+1. $ sudo touch /etc/sudoers.d/sudoconfig
+2. $ sudo mkdir /var/log/sudo  (for sudo log files, yes)
+3. $ sudo nano /etc/sudoers.d/sudoconfig  
+   1. then write next lines in our new file:  
+```
+Defaults	passwd_tries=3    
+Defaults	badpass_message="Incorrect password"
+Defaults	log_input,log_output  
+Defaults	iolog_dir="/var/log/sudo"   
+Defaults	requiretty   
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin" 
+```
+
+### Setup strong password policy
+Save this until last
+1. $ sudo nano /etc/login.defs
+2. replace next lines:
+```
+PASS_MAX_DAYS    99999 -> PASS_MAX_DAYS    30    <- line 160 you can easly reach it with ctrl+_ in nano
+PASS_MIN_DAYS    0     -> PASS_MIN_DAYS    2     
+```    
+
+PASS_WARN_AGE is 7 by defaults anyway so just ignore it.
+3. $ sudo apt install libpam-pwquality
+4. $ sudo nano /etc/pam.d/common-password
+5. Add to the end of the "password requisite pam_pwqiality.so retry=3" line next parameters
+
+```
+minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
+```
+
+You should get_next_line(ha-ha.):
+"password requisite pam_pwqiality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root"
+
+6. Now you have to change all your passwords according to your new password policy
+```
+$ passwd      <- change user password
+$ sudo passwd <- change root password
+```
+
+## Network adapter config
+You may not be able to connect to your VM via SSH with standard settings in
+VirtualBox. There is a way to fix it!
+
+1. Turn off your VM
+2. Go to your VM settings in VirtualBox
+3. Network -> Adapter 1 -> Advanced -> Port forwarding
+4. Add new rule (little green button on right top side. and next parameters:
+```
+Protocol       Host IP       Host Port       Guest IP       Guest Port
+TCP            127.0.0.1     4242            10.0.2.15      4242      
+```
+5. Start your VM again & login
+6. In your host (physical) machine open Terminal and run
+$ ssh <vmusername>@localhost -p 4242
+
+Now you can control your virtual machine from the host terminal.
+
+## Monitoring.sh
+Creating the monitoring.sh file
+### Prep
+sudo apt install net-tools
