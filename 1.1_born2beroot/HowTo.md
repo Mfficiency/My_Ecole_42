@@ -1,45 +1,48 @@
 # Born2beroot
 Step by step guide on how to do it.
 
-## TODO : Reinstall at home and rewrite last steps
-- [Born2beroot](#born2beroot)
-	- [TODO : Reinstall at home and rewrite last steps](#todo--reinstall-at-home-and-rewrite-last-steps)
-	- [Prep](#prep)
-		- [Install VirtualBox](#install-virtualbox)
-		- [Downloading Debian (https://www.wikihow.com/Install-Debian-in-Virtualbox)](#downloading-debian-httpswwwwikihowcominstall-debian-in-virtualbox)
-		- [Launch VirtualBox](#launch-virtualbox)
-		- [Create New VM](#create-new-vm)
-		- [Start the VM](#start-the-vm)
-	- [Install Debian (https://www.wikihow.com/Install-Debian)](#install-debian-httpswwwwikihowcominstall-debian)
-		- [Partition disks](#partition-disks)
-	- [Config](#config)
-		- [Login](#login)
-		- [Check partitions](#check-partitions)
-		- [Change user](#change-user)
-		- [Install sudo](#install-sudo)
-		- [Create groups](#create-groups)
-		- [Config SSH](#config-ssh)
-		- [Install UFW](#install-ufw)
-		- [Config Sudo](#config-sudo)
-		- [Setup strong password policy](#setup-strong-password-policy)
-	- [Network adapter config](#network-adapter-config)
-	- [Monitoring.sh](#monitoringsh)
-		- [Prep](#prep-1)
-			- [Install](#install)
+#### TODO : Reinstall at home and rewrite last steps
 
-## Prep
-### Install VirtualBox
+- [Born2beroot](#born2beroot)
+			- [TODO : Reinstall at home and rewrite last steps](#todo--reinstall-at-home-and-rewrite-last-steps)
+- [Setting up virtual box](#setting-up-virtual-box)
+	- [Install VirtualBox](#install-virtualbox)
+	- [Downloading Debian (https://www.wikihow.com/Install-Debian-in-Virtualbox)](#downloading-debian-httpswwwwikihowcominstall-debian-in-virtualbox)
+	- [Launch VirtualBox](#launch-virtualbox)
+	- [Create New VM](#create-new-vm)
+	- [Start the VM](#start-the-vm)
+- [Installing Debian (https://www.wikihow.com/Install-Debian)](#installing-debian-httpswwwwikihowcominstall-debian)
+	- [Partition disks](#partition-disks)
+- [Configuring your machine](#configuring-your-machine)
+	- [Login](#login)
+	- [Check partitions](#check-partitions)
+	- [Change user](#change-user)
+	- [Install sudo](#install-sudo)
+	- [Create groups](#create-groups)
+	- [Config SSH](#config-ssh)
+	- [Install UFW](#install-ufw)
+	- [Config Sudo](#config-sudo)
+	- [Setup strong password policy](#setup-strong-password-policy)
+- [Network adapter config](#network-adapter-config)
+- [Monitoring.sh](#monitoringsh)
+	- [Preparation before running monitoring.sh](#preparation-before-running-monitoringsh)
+	- [Install net tools](#install-net-tools)
+	- [Create file](#create-file)
+	- [Cron](#cron)
+
+# Setting up virtual box
+## Install VirtualBox
 	1. Go to Managed Software Center
 	2. Search for VirtualBox
 	3. Install VirtualBox
 
-### Downloading Debian (https://www.wikihow.com/Install-Debian-in-Virtualbox)
+## Downloading Debian (https://www.wikihow.com/Install-Debian-in-Virtualbox)
 	1. https://www.debian.org/distrib/netinst
 	2. amd64 : https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.1.0-amd64-netinst.iso 
 
-### Launch VirtualBox
+## Launch VirtualBox
 
-### Create New VM
+## Create New VM
 	1. Click New
 	2. Name: mmeersma42
 	3. Machine folder: /goinfre/mmeersma/VM
@@ -58,7 +61,7 @@ Step by step guide on how to do it.
 	16. Size: 8BG
 	17. Click Create
 
-### Start the VM
+## Start the VM
     1.  Doubleclick the VM 
     2.  Select the folder icon
     3.  Click Add
@@ -69,7 +72,7 @@ Step by step guide on how to do it.
 Change window size to 200% "Virtual Screen 1 >"  
 ![Alt text](Screen%20Shot%202021-11-11%20at%203.00.46%20PM.png)
 
-##  Install Debian (https://www.wikihow.com/Install-Debian)
+#  Installing Debian (https://www.wikihow.com/Install-Debian)
 	1.	Click Install
 	2.	Language: English
 	3.	country: Other, Europe, Switzerland
@@ -82,7 +85,7 @@ Change window size to 200% "Virtual Screen 1 >"
 	10.	Username for your account: mmeersma
 	11.	password: *Password*
 
-### Partition disks
+## Partition disks
 	1. Guided - use entire disk and set up encrypted LVM
 	2. Select harddisk
 	3. Separate / home partition
@@ -102,30 +105,30 @@ Change window size to 200% "Virtual Screen 1 >"
 	17. select dev/sda
 	18. Continue
 
-## Config 
+# Configuring your machine 
 same steps less/different detail: https://github.com/HEADLIGHTER/Born2BeRoot-42/blob/main/walkthrough37.txt
-### Login
+## Login
 	1. use login
 
-### Check partitions
+## Check partitions
 	$ lsblk
 ![Alt text](Screen%20Shot%202021-11-12%20at%2012.48.03%20PM.png)
 
-### Change user
+## Change user
 su - (change to root)
 su *username* (change to  username)
 
-### Install sudo
+## Install sudo
 1. start as root
 2. $ apt install sudo
 
-### Create groups
+## Create groups
 Video explaining groups: https://www.youtube.com/watch?v=7cRaGaIZQlo
 1. $ sudo addgroup user42
 2. $ sudo adduser mmeersma user42
 3. $ sudo apt update
 
-### Config SSH
+## Config SSH
 Video explaining ssh: https://www.youtube.com/watch?v=qWKK_PNHnnA
 1. (if ssh not installed yet) $ sudo apt install openssh-server
 2. $ sudo nano /etc/ssh/sshd_config
@@ -138,7 +141,7 @@ Video explaining ssh: https://www.youtube.com/watch?v=qWKK_PNHnnA
 9. save and exit
 10. Check the status: $ sudo service ssh status  (It should be active (running).)
 
-### Install UFW
+## Install UFW
 Video explaining UFW: https://youtu.be/-CzvPjZ9hp8?t=170
 1. $ sudo apt install ufw
 2. $ sudo ufw enable
@@ -146,7 +149,7 @@ Video explaining UFW: https://youtu.be/-CzvPjZ9hp8?t=170
 4. $ sudo ufw status  It's should be active with 4242 and 4242(v6) ports allow
 from anywhere
 
-### Config Sudo
+## Config Sudo
 1. $ sudo touch /etc/sudoers.d/sudoconfig
 2. $ sudo mkdir /var/log/sudo  (for sudo log files, yes)
 3. $ sudo nano /etc/sudoers.d/sudoconfig  
@@ -160,7 +163,7 @@ Defaults	requiretty
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin" 
 ```
 
-### Setup strong password policy
+## Setup strong password policy
 Save this until last
 1. $ sudo nano /etc/login.defs
 2. replace next lines:
@@ -187,7 +190,7 @@ $ passwd      <- change user password
 $ sudo passwd <- change root password
 ```
 
-## Network adapter config
+# Network adapter config
 You may not be able to connect to your VM via SSH with standard settings in
 VirtualBox. There is a way to fix it!
 
@@ -205,12 +208,32 @@ $ ssh <vmusername>@localhost -p 4242
 
 Now you can control your virtual machine from the host terminal.
 
-## Monitoring.sh
+# Monitoring.sh
 Creating the monitoring.sh file
-### Prep
-#### Install
+## Preparation before running monitoring.sh
+## Install net tools
 sudo apt install net-tools
 
 //     "workbench.editorAssociations": {
         "*.md": "default"
     },
+
+## Create file
+1. $ touch monitoring.sh
+2. $ chmod +x monitoring.sh
+3. $ nano monitoring.sh
+
+```
+#!/bin/bash
+arc=$(uname -a)
+cmds=$(journalctl _COMM=sudo | grep COMMAND ) # removerd | wc -ljournalctl should be running as sudo but our script is running as root so we don't need in sudo here
+wall "	#Architecture: $arc
+		#Sudo: $cmds cmd" 	
+```  
+## Cron
+$ sudo crontab -e
+Choosing nano as editor
+```
+@reboot /path/to/file/monitoring.sh
+*/2 * * * * /path/to/file/monitoring.sh <every 30 seconds
+```
