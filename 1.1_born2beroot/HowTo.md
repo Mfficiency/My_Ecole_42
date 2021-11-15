@@ -25,6 +25,7 @@ Step by step guide on how to do it.
 	- [Network adapter config](#network-adapter-config)
 	- [Monitoring.sh](#monitoringsh)
 		- [Prep](#prep-1)
+			- [Install](#install)
 
 ## Prep
 ### Install VirtualBox
@@ -207,4 +208,9 @@ Now you can control your virtual machine from the host terminal.
 ## Monitoring.sh
 Creating the monitoring.sh file
 ### Prep
+#### Install
 sudo apt install net-tools
+
+//     "workbench.editorAssociations": {
+        "*.md": "default"
+    },
