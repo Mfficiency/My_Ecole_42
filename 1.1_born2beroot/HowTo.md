@@ -29,6 +29,17 @@ Step by step guide on how to do it.
 	- [Install net tools](#install-net-tools)
 	- [Create file](#create-file)
 	- [Cron](#cron)
+- [Questions](#questions)
+		- [Why Debian?](#why-debian)
+		- [What is virtual machine?](#what-is-virtual-machine)
+		- [What it's purpose?](#what-its-purpose)
+		- [How does it works?](#how-does-it-works)
+		- [Diff between aptitude and apt?](#diff-between-aptitude-and-apt)
+		- [What is AppArmor?](#what-is-apparmor)
+		- [What is SSH?](#what-is-ssh)
+		- [Create a new user](#create-a-new-user)
+		- [How your script works?](#how-your-script-works)
+		- [Part two: What to check?](#part-two-what-to-check)
 
 # Setting up virtual box
 ## Install VirtualBox
@@ -106,7 +117,7 @@ Change window size to 200% "Virtual Screen 1 >"
 	18. Continue
 
 # Configuring your machine 
-same steps less/different detail: https://github.com/HEADLIGHTER/Born2BeRoot-42/blob/main/walkthrough37.txt
+same steps less/different detail: https://github.com/HEADLIGHTER/Born2BeRoot-42
 ## Login
 	1. use login
 
@@ -226,7 +237,7 @@ sudo apt install net-tools
 ```
 #!/bin/bash
 arc=$(uname -a)
-cmds=$(journalctl _COMM=sudo | grep COMMAND ) # removerd | wc -ljournalctl should be running as sudo but our script is running as root so we don't need in sudo here
+cmds=$(journalctl _COMM=sudo | grep COMMAND ) # removed | wc -l journalctl should be running as sudo but our script is running as root so we don't need in sudo here
 wall "	#Architecture: $arc
 		#Sudo: $cmds cmd" 	
 ```  
@@ -235,5 +246,94 @@ $ sudo crontab -e
 Choosing nano as editor
 ```
 @reboot /path/to/file/monitoring.sh
-*/2 * * * * /path/to/file/monitoring.sh <every 30 seconds
+*/2 * * * * /path/to/file/monitoring.sh <every 2 min
 ```
+
+# Questions
+(combination of Headlighter & my own, wiki)
+
+### Why Debian?
+It's easier to install and configure than CentOS (and i haven't use CentOS before)
+
+### What is virtual machine?
+In computing, a virtual machine (VM) is the virtualization/emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. [read more](https://en.wikipedia.org/wiki/Virtual_machine)
+
+### What it's purpose?
+VMs may be deployed to accommodate different levels of processing power needs, to run software that requires a different operating system, or to test applications in a safe, enclosed environment. 
+
+### How does it works?
+VM working through "Virtualization"/Emulation technology. Virtualization uses software to simulate virtual hardware that allows VMs to run on a single host machine.
+
+### Diff between aptitude and apt?
+Aptitude is a high-level package manager while APT is lower-level package manager which can be used by other higher-level package managers
+[read more](https://www.tecmint.com/difference-between-apt-and-aptitude/)
+
+### What is AppArmor?
+AppArmor ("Application Armor") is a Linux kernel security module that allows the system administrator to restrict programs'
+capabilities with per-program profiles.
+[read more](https://en.wikipedia.org/wiki/AppArmor)
+
+### What is SSH?
+SSH, also known as Secure Shell or Secure Socket Shell, is a network protocol that gives users, particularly system 
+administrators, a secure way to access a computer over an unsecured network.
+[read more](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+
+### Create a new user
+
+	$ sudo adduser username                    <- creating new user (yes (no))  
+	$ sudo chage -l username                   <- Verify password expire info for new user  
+	$ sudo adduser username sudo                
+	$ sudo adduser username user42             <- assign new user to sudo and user42 groups  
+
+
+### How your script works?
+... README.md
+
+### Part two: What to check?   
+
+   	$ lsblk                               <- Check partitions
+	$ sudo aa-status                      <- AppArmor status
+	$ getent group sudo                   <- sudo group users
+	$ getent group user42                 <- user42 group users
+	$ sudo service ssh status             <- ssh status, yep
+	$ sudo ufw status                     <- ufw status
+	$ ssh username@ipadress -p 4242       <- connect to VM from your host (physica$ machine via SSH
+	$ nano /etc/sudoers.d/<filename>      <- yes, sudo config file. You can $ ls /etc/sudoers.d first
+	$ nano /etc/login.defs                <- password expire policy
+	$  nano /etc/pam.d/common-password    <- password policy
+	$ sudo crontab -l                    <- cron schedule
+
+
+
+I think this one need an addition to make it more easy to pass evaluation. So, here we are on our checklist and his commands.
+
+How to change hostname?
+[$sudo nano /etc/hostname]
+
+Where is sudo logs in /var/log/sudo?
+[$cd /var/log/sudo/00/00 && ls]
+You will see a lot of directories with names like 01 2B 9S 4D etc. They contain the logs we need.
+[$ sudo apt update]
+[$ ls]
+Now you see that we have a new directory here.
+[$ cd <nameofnewdirectory> && ls]
+[$ cat log] <- Input log
+[$ cat ttyout] <- Output log
+
+How to add and remove port 8080 in UFW?
+[$ sudo ufw allow 8080] <- allow
+[$ sudo ufw status] <- check
+[$ sudo ufw deny 8080] <- deny (yes yes)
+
+How to run script every 30 seconds?
+[$ sudo crontab -e]
+Remove or commit previous cron "schedule" and add next lines in crontab file
+|*************************************************|
+| */1 * * * * /path/to/monitoring.sh              |
+| */1 * * * * sleep 30s && /path/to/monitoring.sh |
+|*************************************************|
+To stop script running on boot you just need to remove or commit
+|********************************|
+| @reboot /path/to/monitoring.sh |
+|********************************|
+line in crontab file.
