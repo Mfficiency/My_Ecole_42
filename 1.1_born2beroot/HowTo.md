@@ -29,14 +29,21 @@ Step by step guide on how to do it.
 	- [Install net tools](#install-net-tools)
 	- [Create file](#create-file)
 	- [Cron](#cron)
-- [Questions](#questions)
-		- [Why Debian?](#why-debian)
-		- [What is virtual machine?](#what-is-virtual-machine)
-		- [What it's purpose?](#what-its-purpose)
+- [Eval](#eval)
+	- [General instructions](#general-instructions)
+	- [Project overview](#project-overview)
 		- [How does it works?](#how-does-it-works)
+		- [Why Debian?](#why-debian)
+		- [Differences between CentOS and Debian](#differences-between-centos-and-debian)
+		- [What it's purpose?](#what-its-purpose)
+		- [What is virtual machine?](#what-is-virtual-machine)
 		- [Diff between aptitude and apt?](#diff-between-aptitude-and-apt)
 		- [What is AppArmor?](#what-is-apparmor)
+		- [Monitor.sh should be running every 10 min](#monitorsh-should-be-running-every-10-min)
+	- [Simple setup](#simple-setup)
 		- [What is SSH?](#what-is-ssh)
+	- [User](#user)
+		- [My login](#my-login)
 		- [Create a new user](#create-a-new-user)
 		- [How your script works?](#how-your-script-works)
 		- [Part two: What to check?](#part-two-what-to-check)
@@ -249,20 +256,26 @@ Choosing nano as editor
 */2 * * * * /path/to/file/monitoring.sh <every 2 min
 ```
 
-# Questions
-(combination of Headlighter & my own, wiki)
+# Eval
+(combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf) my own, wiki)
 
+## General instructions
+- signature.txt present
+- check signature = .vdi (use diff)
+- duplicate vm
+
+## Project overview
+### How does it works?
+VM working through "Virtualization"/Emulation technology. Virtualization uses software to simulate virtual hardware that allows VMs to run on a single host machine.
 ### Why Debian?
 It's easier to install and configure than CentOS (and i haven't use CentOS before)
 
-### What is virtual machine?
-In computing, a virtual machine (VM) is the virtualization/emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. [read more](https://en.wikipedia.org/wiki/Virtual_machine)
-
+### Differences between CentOS and Debian
+// TODO
 ### What it's purpose?
 VMs may be deployed to accommodate different levels of processing power needs, to run software that requires a different operating system, or to test applications in a safe, enclosed environment. 
-
-### How does it works?
-VM working through "Virtualization"/Emulation technology. Virtualization uses software to simulate virtual hardware that allows VMs to run on a single host machine.
+### What is virtual machine?
+In computing, a virtual machine (VM) is the virtualization/emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. [read more](https://en.wikipedia.org/wiki/Virtual_machine)
 
 ### Diff between aptitude and apt?
 Aptitude is a high-level package manager while APT is lower-level package manager which can be used by other higher-level package managers
@@ -273,11 +286,30 @@ AppArmor ("Application Armor") is a Linux kernel security module that allows the
 capabilities with per-program profiles.
 [read more](https://en.wikipedia.org/wiki/AppArmor)
 
+### Monitor.sh should be running every 10 min
+
+## Simple setup
+
+- No graphical interface
+- Check password rules
+  - // TODO
+- Check UFW
+  - // TODO
+- Check SSH
+  - // TODO
+- Check OS
+  - // TODO
 ### What is SSH?
 SSH, also known as Secure Shell or Secure Socket Shell, is a network protocol that gives users, particularly system 
 administrators, a secure way to access a computer over an unsecured network.
 [read more](https://searchsecurity.techtarget.com/definition/Secure-Shell)
 
+## User
+
+### My login
+- part of user42
+- part of sudo
+- password policy
 ### Create a new user
 
 	$ sudo adduser username                    <- creating new user (yes (no))  
@@ -297,11 +329,11 @@ administrators, a secure way to access a computer over an unsecured network.
 	$ getent group user42                 <- user42 group users
 	$ sudo service ssh status             <- ssh status, yep
 	$ sudo ufw status                     <- ufw status
-	$ ssh username@ipadress -p 4242       <- connect to VM from your host (physica$ machine via SSH
+	$ ssh username@ipadress -p 4242       <- connect to VM from your host (physical)$ machine via SSH
 	$ nano /etc/sudoers.d/<filename>      <- yes, sudo config file. You can $ ls /etc/sudoers.d first
 	$ nano /etc/login.defs                <- password expire policy
-	$  nano /etc/pam.d/common-password    <- password policy
-	$ sudo crontab -l                    <- cron schedule
+	$ nano /etc/pam.d/common-password     <- password policy
+	$ sudo crontab -l                     <- cron schedule
 
 
 
