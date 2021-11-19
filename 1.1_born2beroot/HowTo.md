@@ -47,6 +47,7 @@ Step by step guide on how to do it.
 		- [Create a new user](#create-a-new-user)
 		- [How your script works?](#how-your-script-works)
 		- [Part two: What to check?](#part-two-what-to-check)
+- [Other questions](#other-questions)
 
 # Setting up virtual box
 ## Install VirtualBox
@@ -397,3 +398,9 @@ To stop script running on boot you just need to remove or commit
 | @reboot /path/to/monitoring.sh |
 |********************************|
 line in crontab file.
+
+
+# Other questions
+$ head -n 2 /etc/os-release
+$ /usr/sbin/aa-status
+ss -tunlp
