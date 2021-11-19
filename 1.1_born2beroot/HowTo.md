@@ -29,6 +29,7 @@ Step by step guide on how to do it.
 	- [Install net tools](#install-net-tools)
 	- [Create file](#create-file)
 	- [Cron](#cron)
+	- [Signature](#signature)
 - [Eval](#eval)
 	- [General instructions](#general-instructions)
 	- [Project overview](#project-overview)
@@ -285,6 +286,13 @@ Choosing nano as editor
 */10 * * * * /path/to/file/monitoring.sh <every 10 min
 ```
 
+## Signature
+Get the signature and copy it into a txt file
+Explication in the subject
+Go to the folder where the VM is saved an run 
+$ shasum yourfile.vdi
+16b893f2bac0c52a851e483423ad7cc1983f82fa	
+
 # Eval
 (combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf) my own, wiki)
 
@@ -323,9 +331,9 @@ capabilities with per-program profiles.
 - Check password rules
   - // TODO
 - Check UFW
-  - // TODO
+  	$ sudo ufw status
 - Check SSH
-  - // TODO
+  	$ sudo service ssh status
 - Check OS
   - // TODO
 ### What is SSH?
@@ -356,7 +364,7 @@ administrators, a secure way to access a computer over an unsecured network.
 	$ sudo aa-status                      <- AppArmor status
 	$ getent group sudo                   <- sudo group users
 	$ getent group user42                 <- user42 group users
-	$ sudo service ssh status             <- ssh status, yep
+	$ sudo service ssh status             <- ssh status
 	$ sudo ufw status                     <- ufw status
 	$ ssh username@ipadress -p 4242       <- connect to VM from your host (physical)$ machine via SSH
 	$ nano /etc/sudoers.d/<filename>      <- yes, sudo config file. You can $ ls /etc/sudoers.d first
@@ -403,4 +411,5 @@ line in crontab file.
 # Other questions
 $ head -n 2 /etc/os-release
 $ /usr/sbin/aa-status
-ss -tunlp
+$ ss -tunlp
+$ /usr/sbin/ufw status
