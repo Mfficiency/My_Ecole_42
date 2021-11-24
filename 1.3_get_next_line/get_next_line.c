@@ -64,6 +64,7 @@ static char	*ft_send_last_line(char *str, int ints[])
 	return (str);
 }
 
+// duplicate 
 static char	*ft_str_loader(char **str, int ints[])
 {
 	if (ints[0] == 1)
@@ -77,6 +78,37 @@ static char	*ft_str_loader(char **str, int ints[])
 	}
 	return (*str);
 }
+
+/*
+char	*get_next_line(int fd)
+{	
+	static char	*str;
+	char		buf[BUFFER_SIZE + 1];	// +1 for '\0'
+	static int	ints[] = {1, 1, 1};		// 0 = str, 1 = check buffer, 2 = count
+	int			check;					
+
+	if (fd < 0 || BUFFER_SIZE <= 0) 	// check if fd is valid
+		return (NULL);
+	str = ft_str_loader(&str, ints);
+	while (ints[1] > 0)
+	{
+		ints[1] = read(fd, buf, BUFFER_SIZE);
+		if (ints[1] == -1 || (ints[2]++ == 1 && ints[1] == 0))
+			return (ft_send_last_line(str, ints));
+		buf[ints[1]] = '\0';
+		str = ft_strjoin(str, buf);
+		if (ft_check_newline(buf) != -1)	// are we at the end of a line?
+		{
+			check = ft_check_newline(str);	// get the index of the newline
+			return (ft_send_line(&str, check)); // return the line at the index
+		}
+	}
+	check = ft_check_newline(str);
+	if (check != -1)
+		return (ft_send_line(&str, check));
+	return (ft_send_last_line(str, ints));
+}
+*/
 
 char	*get_next_line(int fd)
 {	

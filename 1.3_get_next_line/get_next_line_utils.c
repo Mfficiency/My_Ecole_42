@@ -12,12 +12,13 @@
 
 #include "get_next_line.h"
 
+// return the index of a substring in a string and free if necessary
 char	*ft_substr(char *s, unsigned int start, size_t len, int f)
 {
 	char	*newstr;
 	size_t	max_len;
 	size_t	i;
-	size_t 	s_len;
+	size_t	s_len;
 
 	i = 0;
 	s_len = ft_strlen(s);
@@ -38,6 +39,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len, int f)
 	return (newstr);
 }
 
+// return the length of a string
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
@@ -48,6 +50,7 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
+// return the difference between two strings
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -58,6 +61,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }
 
+// duplicate a string and free
 char	*ft_strdup(char *s, int f)
 {
 	char	*ret;
@@ -82,6 +86,7 @@ char	*ft_strdup(char *s, int f)
 	return (ret);
 }
 
+// join two strings
 char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*new_str;

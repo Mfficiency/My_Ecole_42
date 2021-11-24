@@ -32,12 +32,12 @@ int	main(void)
 	int	fda;
 	fda = open("txt_files/hello.txt", O_RDONLY);
 	test(fda);
-	printf("--- nbr ---\n");
+	/* printf("--- nbr ---\n");
 	int	fdf;
 	fdf = open("txt_files/nbr.txt", O_RDONLY);
 	test(fdf);
 	printf("--- nbr2 ---\n");
 	int	fdb;
 	fdb = open("txt_files/nbr2.txt", O_RDONLY);
-	test(fdb);
+	test(fdb); */
 }

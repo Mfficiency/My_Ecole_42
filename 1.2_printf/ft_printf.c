@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:14:09 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/11 13:15:33 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:50:30 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int	ft_is_conv(char c)
 		|| c == 'u' || c == 'x' || c == 'X' || c == '%');
 }
 
-int	ft_handle_conv(int type, va_list args)
+int	ft_handle_conv(int type, va_list args) // 
 {
 	int	i;
 
 	i = 0;
-	if (type == 'c')
+	if (type == 'c') // char
 		i = ft_handle_c(va_arg(args, int));
-	else if (type == 's')
+	else if (type == 's') // string
 		i = ft_putstr_count(va_arg(args, char *));
-	else if (type == 'p')
+	else if (type == 'p') //
 		i = ft_handle_p(va_arg(args, size_t));
 	else if (type == 'd' || type == 'i')
 		i = ft_handle_i(va_arg(args, int));
