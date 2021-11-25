@@ -23,6 +23,8 @@ Step by step guide on how to do it.
 	- [Install UFW](#install-ufw)
 	- [Config Sudo](#config-sudo)
 	- [Setup strong password policy](#setup-strong-password-policy)
+		- [Password expiration dates](#password-expiration-dates)
+		- [Password quality](#password-quality)
 - [Network adapter config](#network-adapter-config)
 - [Monitoring.sh](#monitoringsh)
 	- [Preparation before running monitoring.sh](#preparation-before-running-monitoringsh)
@@ -48,6 +50,10 @@ Step by step guide on how to do it.
 		- [Create a new user](#create-a-new-user)
 		- [How your script works?](#how-your-script-works)
 		- [Part two: What to check?](#part-two-what-to-check)
+		- [How to change hostname?](#how-to-change-hostname)
+		- [Where are sudo logs?](#where-are-sudo-logs)
+		- [How to add and remove port 8080 in UFW?](#how-to-add-and-remove-port-8080-in-ufw)
+		- [How to run the script every 30 seconds?](#how-to-run-the-script-every-30-seconds)
 - [Other questions](#other-questions)
 
 # Setting up virtual box
@@ -170,10 +176,10 @@ Video explaining UFW: https://youtu.be/-CzvPjZ9hp8?t=170
 from anywhere
 
 ## Config Sudo
-1. $ sudo touch /etc/sudoers.d/sudoconfig
-2. $ sudo mkdir /var/log/sudo  (for sudo log files, yes)
-3. $ sudo nano /etc/sudoers.d/sudoconfig  
-   1. then write next lines in our new file:  
+	$ sudo touch /etc/sudoers.d/sudoconfig
+	$ sudo mkdir /var/log/sudo  (for sudo log files, yes)
+	$ sudo nano /etc/sudoers.d/sudoconfig  
+then write next lines in our new file:  
 ```
 Defaults	passwd_tries=3    
 Defaults	badpass_message="Incorrect password"
@@ -184,18 +190,21 @@ Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 ```
 
 ## Setup strong password policy
-Save this until last
-1. $ sudo nano /etc/login.defs
-2. replace next lines:
+Save this until the end of your exercise if you want to make life easier
+### Password expiration dates
+	$ sudo nano /etc/login.defs  
+replace the following lines:
 ```
-PASS_MAX_DAYS    99999 -> PASS_MAX_DAYS    30    <- line 160 you can easly reach it with ctrl+_ in nano
-PASS_MIN_DAYS    0     -> PASS_MIN_DAYS    2     
-```    
+PASS_MAX_DAYS    99999 -> PASS_MAX_DAYS    30   <- line 160 reach it with ctrl+_ in nano
+PASS_MIN_DAYS    0     -> PASS_MIN_DAYS    2   
+PASS_WARN_AGE 	 7 								<- default value   
+```   
+save and quit the file 
 
-PASS_WARN_AGE is 7 by defaults anyway so just ignore it.
-3. $ sudo apt install libpam-pwquality
-4. $ sudo nano /etc/pam.d/common-password
-5. Add to the end of the "password requisite pam_pwqiality.so retry=3" line next parameters
+### Password quality
+	$ sudo apt install libpam-pwquality  
+	$ sudo nano /etc/pam.d/common-password  
+Add to the end of the "password requisite pam_pwqiality.so retry=3" line next parameters
 
 ```
 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
@@ -204,7 +213,7 @@ minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_
 You should get_next_line(ha-ha.):
 "password requisite pam_pwqiality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root"
 
-6. Now you have to change all your passwords according to your new password policy
+1. Now you have to change all your passwords according to your new password policy
 ```
 $ passwd      <- change user password
 $ sudo passwd <- change root password
@@ -287,14 +296,14 @@ Choosing nano as editor
 ```
 
 ## Signature
-Get the signature and copy it into a txt file
-Explication in the subject
-Go to the folder where the VM is saved an run 
-$ shasum yourfile.vdi
-16b893f2bac0c52a851e483423ad7cc1983f82fa	
+	Get the signature and copy it into a txt file  
+	Explication in the subject  
+	Go to the folder where the VM is saved an run  
+	$ shasum yourfile.vdi  
+	my result: 16b893f2bac0c52a851e483423ad7cc1983f82fa	
 
 # Eval
-(combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf) my own, wiki)
+(combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf), my own, wikipedia)
 
 ## General instructions
 - signature.txt present
@@ -376,36 +385,34 @@ administrators, a secure way to access a computer over an unsecured network.
 
 I think this one need an addition to make it more easy to pass evaluation. So, here we are on our checklist and his commands.
 
-How to change hostname?
-[$sudo nano /etc/hostname]
+### How to change hostname?
+	$ sudo nano /etc/hostname
 
-Where is sudo logs in /var/log/sudo?
-[$cd /var/log/sudo/00/00 && ls]
-You will see a lot of directories with names like 01 2B 9S 4D etc. They contain the logs we need.
-[$ sudo apt update]
-[$ ls]
-Now you see that we have a new directory here.
-[$ cd <nameofnewdirectory> && ls]
-[$ cat log] <- Input log
-[$ cat ttyout] <- Output log
+### Where are sudo logs?
+	$ cd /var/log/sudo/00/00 && ls
+	$ sudo apt update
+	$ ls				<- Now you see that we have a new directory here.
+	$ cd <nameofnewdirectory> && ls
+	$ cat log 			<- Input log
+	$ cat ttyout 		<- Output log
 
-How to add and remove port 8080 in UFW?
-[$ sudo ufw allow 8080] <- allow
-[$ sudo ufw status] <- check
-[$ sudo ufw deny 8080] <- deny (yes yes)
+### How to add and remove port 8080 in UFW?
+	$ sudo ufw allow 8080 	<- allow
+	$ sudo ufw status 		<- check
+	$ sudo ufw deny 8080 	<- deny (yes yes)
 
-How to run script every 30 seconds?
-[$ sudo crontab -e]
+### How to run the script every 30 seconds?
+	$ sudo crontab -e  
 Remove or commit previous cron "schedule" and add next lines in crontab file
-|*************************************************|
-| */1 * * * * /path/to/monitoring.sh              |
-| */1 * * * * sleep 30s && /path/to/monitoring.sh |
-|*************************************************|
-To stop script running on boot you just need to remove or commit
-|********************************|
-| @reboot /path/to/monitoring.sh |
-|********************************|
-line in crontab file.
+
+	*/1 * * * * /path/to/monitoring.sh              
+	*/1 * * * * sleep 30s && /path/to/monitoring.sh 
+
+To stop script running on boot you just need to remove
+
+ 	@reboot /path/to/monitoring.sh 
+
+
 
 
 # Other questions
