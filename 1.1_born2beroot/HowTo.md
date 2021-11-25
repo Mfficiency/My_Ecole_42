@@ -31,6 +31,7 @@ Step by step guide on how to do it.
 	- [Install net tools](#install-net-tools)
 	- [Create file](#create-file)
 	- [Cron](#cron)
+	- [Create your snapshot](#create-your-snapshot)
 	- [Signature](#signature)
 - [Eval](#eval)
 	- [General instructions](#general-instructions)
@@ -54,6 +55,7 @@ Step by step guide on how to do it.
 		- [Where are sudo logs?](#where-are-sudo-logs)
 		- [How to add and remove port 8080 in UFW?](#how-to-add-and-remove-port-8080-in-ufw)
 		- [How to run the script every 30 seconds?](#how-to-run-the-script-every-30-seconds)
+	- [Partitions](#partitions)
 - [Other questions](#other-questions)
 
 # Setting up virtual box
@@ -210,10 +212,13 @@ Add to the end of the "password requisite pam_pwqiality.so retry=3" line next pa
 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
 ```
 
-You should get_next_line(ha-ha.):
-"password requisite pam_pwqiality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root"
+this means: 3 retries  
+min lenght is 10 char  
+ucredit must contain uppercase  
+dcredit must contain lowercase
 
 1. Now you have to change all your passwords according to your new password policy
+   for example: 00112233Qw
 ```
 $ passwd      <- change user password
 $ sudo passwd <- change root password
@@ -295,12 +300,17 @@ Choosing nano as editor
 */10 * * * * /path/to/file/monitoring.sh <every 10 min
 ```
 
+## Create your snapshot
+go to the oracle VM VirtualBox Manager and click the menu icon on your vm  
+Go to snapshots and take a snapshot
+![Alt text](Screen%20Shot%202021-11-25%20at%202.46.11%20PM.png)
+
 ## Signature
 	Get the signature and copy it into a txt file  
 	Explication in the subject  
 	Go to the folder where the VM is saved an run  
 	$ shasum yourfile.vdi  
-	my result: 16b893f2bac0c52a851e483423ad7cc1983f82fa	
+	my result: af22fbc21f14a85e11acc224285acac1a760df05	
 
 # Eval
 (combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf), my own, wikipedia)
@@ -413,10 +423,13 @@ To stop script running on boot you just need to remove
  	@reboot /path/to/monitoring.sh 
 
 
-
+## Partitions
+	$ lsblk
 
 # Other questions
 $ head -n 2 /etc/os-release
 $ /usr/sbin/aa-status
 $ ss -tunlp
 $ /usr/sbin/ufw status
+
+chage -l user
