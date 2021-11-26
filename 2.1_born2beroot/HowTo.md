@@ -307,7 +307,7 @@ Go to snapshots and take a snapshot
 	Explication in the subject  
 	Go to the folder where the VM is saved an run  
 	$ shasum yourfile.vdi  
-	my result: af22fbc21f14a85e11acc224285acac1a760df05	
+	my result: 67e5cda6885d3e186b5e53658ab626f34524fc0f	
 
 # Eval
 (combination of Headlighter, [maresverbrugge](https://github.com/maresverbrugge/Born2beRoot-1/blob/main/eval_sheet_b2br.pdf), my own, wikipedia)
