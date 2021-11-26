@@ -1,7 +1,6 @@
 # My_Ecole_42
-Here you find my excercises of ecole 42 (started in 2021)
-  
-
+Here you find my excercises of ecole 42 (started in 2021). 
+Special thanks to [Robin](https://github.com/RobinBurri?) for helping me figure things out! 
 ## Interesting links
 - [Usefull tests](https://github.com/Tripouille)
 - [Rchallie's repo](https://github.com/rchallie/)
@@ -29,6 +28,11 @@ If you want to get evaluated by your neighbor, let him post a slot on his pc and
 |   |        |
 |   |        |
 |   |        |   
+
+## Common issues
+- PC's memory is full:
+  - delete the contents of ~/Library/Caches
+
 <br>
 
 ___
