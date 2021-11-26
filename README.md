@@ -9,7 +9,8 @@ Here you find my excercises of ecole 42 (started in 2021)
 - [How the blackhole works](https://medium.com/@benjaminmerchin/42-black-hole-deep-dive-cbc4b343c6b2)    
 - [Some more statistics for you](https://42evaluators.com/blackhole)    
    
-
+## Fun fact
+If you want to get evaluated by your neighbor, let him post a slot on his pc and you check on your phone. 
 ## Days per subject
 
 | Subject     | Days added |
