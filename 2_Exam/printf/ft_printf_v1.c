@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:16:23 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/29 16:29:54 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:08:02 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,130 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+char *ft_strdup(const char *s);
+
+int	ft_tolower(int c)
+{
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	else
+		return (c);
+}
+
+char	*ft_str_tolower(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
+}
+
+static unsigned int	ft_snbdigits(size_t nb, int base)
+{
+	unsigned int	res;
+
+	res = 0;
+	while (nb != 0)
+	{
+		nb /= base;
+		res++;
+	}
+	return (res);
+}
+
+char	*ft_itoa_base(size_t num, int base)
+{
+	char	*res;
+	int		len;
+	size_t	nbr;
+
+	nbr = num;
+	if (nbr == 0)
+		return (ft_strdup("0"));
+	len = ft_snbdigits(num, base);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (res == NULL)
+		return (NULL);
+	res[len--] = '\0';
+	while (nbr != 0)
+	{
+		if ((nbr % base) < 10)
+			res[len] = (nbr % base) + 48;
+		else
+			res[len] = (nbr % base) + 55;
+		nbr /= base;
+		len--;
+	}	
+	return (res);
+}
+
+static unsigned int	ft_nbdigits(int nb, int base)
+{
+	unsigned int	res;
+
+	res = 0;
+	while (nb != 0)
+	{
+		nb /= base;
+		res++;
+	}
+	return (res);
+}
+
+static int	ft_intlen(int n, int base)
+{
+	unsigned int	len;
+
+	if (n < 0)
+		len = ft_nbdigits(n, base) + 1;
+	else
+		len = ft_nbdigits(n, base);
+	return (len);
+}
+
+char *ft_itoa(int num, int base)
+{
+	char *res;
+	int len;
+	long nbr;
+
+	nbr = num;
+	if (nbr == 0)
+	{
+		return (ft_strdup("0"));
+	}
+	if (nbr < 0)
+		nbr *= -1;
+	len = ft_intlen(num, base);						// get the length
+	res = (char *)malloc(sizeof(char) * (len + 1));	// allocate the memory
+	if (res == NULL)
+	{
+		return(NULL);
+	}
+	res[len--] = '\0';								// add the ending char at the end
+	while (nbr > 0)									// as long as the number is bigger than zero
+	{
+		res[len--] = nbr % base + '0';				// add the char to the last empty place in the string
+		nbr /= base;
+	}
+	if (len == 0 && res[1] == '\0')					// add a zero
+		*(res + len) = '0';
+	else if (len == 0 && res[1] != '\0')
+		*(res + len) = '-';							// add a minus
+	return (res);
+}
+
 int ft_handle_s(char *str) // write char and return amount of chars
 {
 	int i;
 	
 	i = 0;
-	if (!str)
+	if (!str)				// if there is nothing return null
 		str = ("(null)");
 	while (*str)
 	{
@@ -139,7 +257,7 @@ int ft_handle_input(const char *format, va_list args)
 		}
 		i++;
 	}
-	
+	return (char_count);
 }
 
 int ft_printf(const char *format, ... )
@@ -158,11 +276,14 @@ int ft_printf(const char *format, ... )
 }
 
 //*
+
+// TODO make test for during exam
+
 int main ()
 {
 	ft_printf("%d", 5);
 	ft_printf("%s", "hello");
-	ft_printf("%x", 8);
+	ft_printf("%x", 20);
 	return (0);
 }
 //*/
