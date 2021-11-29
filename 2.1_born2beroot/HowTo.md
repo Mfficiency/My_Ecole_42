@@ -206,8 +206,9 @@ save and quit the file
 Add to the end of the "password requisite pam_pwqiality.so retry=3" line next parameters
 
 ```
-minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
+minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 // create new line for root exemption 
 ```
+now duplicate line and remove difok=7 & add enforce_for_root  
 
 this means: 3 retries  
 min lenght is 10 char  
@@ -269,7 +270,7 @@ lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 lvmt=$(lsblk | grep "lvm" | wc -l)
 lvmu=$(if [ $lvmt -eq 0 ]; then echo no; else echo yes; fi)
 #You need to install net tools for the next step [$ sudo apt install net-tools]
-ctcp=$(cat /proc/net/sockstat{,6} | awk '$1 == "TCP:" {print $3}')
+ctcp=$(netstat -an | grep ESTABLISHED |  wc -l )
 ulog=$(users | wc -w)
 ip=$(hostname -I)
 mac=$(ip link show | awk '$1 == "link/ether" {print $2}')
