@@ -6,16 +6,11 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:14:09 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/24 13:50:30 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:17:01 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
-
-/* 
-TODO: - test github upload
-TODO: - test norm
-*/
 
 int	ft_is_conv(char c)
 {

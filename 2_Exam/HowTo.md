@@ -9,3 +9,8 @@ exam exists of 2 parts
 links:
 https://github.com/Glagan/42-exam-rank-02 
 
+
+## printf info
+handle only 
+d s x
+
