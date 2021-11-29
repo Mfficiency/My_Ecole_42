@@ -15,9 +15,9 @@ If you want to get evaluated by your neighbor, let him post a slot on his pc and
 | Subject     | Days added |
 | ----------- | ----------- |
 | [libft](https://github.com/Mfficiency/My_Ecole_42/tree/main/0_libft)       | 60       |
-| [printft](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.2_printf)   | 16        |
-| [get_next_line](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.3_get_next_line)  |   0     |
-| [born2beroot](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.1_born2beroot)  |  0      |
+| [printft](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.2_printf)   | 36        |
+| [get_next_line](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.3_get_next_line)  |   25     |
+| [born2beroot](https://github.com/Mfficiency/My_Ecole_42/tree/main/1.1_born2beroot)  |  13      |
 |   |        |
 |   |        |
 |   |        |
