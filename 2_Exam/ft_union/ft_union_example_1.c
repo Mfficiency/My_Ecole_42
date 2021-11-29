@@ -1,71 +1,33 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_union_example                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 11:07:43 by exam              #+#    #+#             */
-/*   Updated: 2021/11/29 13:55:40 by mmeersma         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
-#include <stdbool.h>
 
-int		ft_str_length(char *str)
+int
+	main(int argc, char **argv)
 {
-	int	length;
+	int	used[255];
+	int	i, j;
 
-	length = 0;
-	while (str[length])
-		length++;
-	return (length);
-}
-
-void	ft_union_print_if(bool already[255], char c)
-{
-	if (!already[(int)c])
-	{
-		already[(int)c] = true;
-		write(1, &c, 1);
-	}
-}
-
-void	ft_union_do_str(bool already[255], char *str)
-{
-	int	index;
-	int	length;
-
-	index = 0;
-	length = ft_str_length(str);
-	while (index < length)
-	{
-		ft_union_print_if(already, str[index]);
-		index++;
-	}
-}
-
-void	ft_union(char *str1, char *str2)
-{
-	int	index;
-	bool	already[255];
-
-	index = 0;
-	while (index < 255)
-	{
-		already[index] = false;
-		index++;
-	}
-	ft_union_do_str(already, str1);
-	ft_union_do_str(already, str2);
-}
-
-int		main(int argc, char **argv)
-{
 	if (argc == 3)
 	{
-		ft_union(argv[1], argv[2]);
+		i = 0;
+		while (i < 255)
+			used[i++] = 0;
+		i = 1;
+		while (i < 3)
+		{
+			j = 0;
+			while (argv[i][j])
+			{
+				if (!used[(unsigned char)argv[i][j]])
+				{
+					used[(unsigned char)argv[i][j]] = 1;
+					write(1, &argv[i][j], 1);
+				}
+				j++;
+			}
+			i++;
+		}
 	}
 	write(1, "\n", 1);
+	return (0);
 }
+
