@@ -6,7 +6,7 @@
 /*   By: mmeersma <mmeersma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:51:19 by mmeersma          #+#    #+#             */
-/*   Updated: 2021/11/29 15:04:18 by mmeersma         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:07:23 by mmeersma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ft_union(char *str1, char *str2)
 	{
 		used[i++] = 0;
 	}
-	while (*str1) // add all characters to
+	while (*str1) // add all characters from first string
 	{
 		if (!used[(unsigned char)*str1])
 		{
@@ -31,7 +31,7 @@ void ft_union(char *str1, char *str2)
 		}
 		str1++;
 	}
-	while (*str2)
+	while (*str2) //check all characters from second string
 	{
 		if (!used[(unsigned char)*str2])
 		{
