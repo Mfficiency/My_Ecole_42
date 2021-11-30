@@ -6,8 +6,7 @@ typedef struct	s_str
 	struct s_str	*next;
 }				t_str;
 
-static int
-	ft_strlen(char const *str)
+static int	ft_strlen(char const *str)
 {
 	int	i;
 
@@ -17,8 +16,7 @@ static int
 	return (i);
 }
 
-static char
-	*ft_strdup(char const *str)
+static char	*ft_strdup(char const *str)
 {
 	char	*cpy;
 	int		i;
@@ -37,8 +35,7 @@ static char
 	return (cpy);
 }
 
-static int
-	ft_strchr(char const *str, char c)
+static int	ft_strchr(char const *str, char c)
 {
 	int	i;
 
@@ -49,8 +46,7 @@ static int
 	return (0);
 }
 
-static t_str
-	*str_add(t_str **str, char *content)
+static t_str	*str_add(t_str **str, char *content)
 {
 	t_str	*new;
 	t_str	*tmp;
@@ -74,8 +70,7 @@ static t_str
 	return (new);
 }
 
-static int
-	str_strchr(t_str *str, char c)
+static int	str_strchr(t_str *str, char c)
 {
 	while (str)
 	{
@@ -86,8 +81,7 @@ static int
 	return (0);
 }
 
-static int
-	str_length(t_str *str)
+static int	str_length(t_str *str)
 {
 	int	total;
 	int	i;
@@ -106,8 +100,7 @@ static int
 	return (total);
 }
 
-static int
-	str_write(t_str **str, char **line)
+static int	str_write(t_str **str, char **line)
 {
 	char	*ltmp;
 	t_str	*tmp;
@@ -145,8 +138,7 @@ static int
 	return (1);
 }
 
-static int
-	str_clear(t_str **str)
+static int	str_clear(t_str **str)
 {
 	t_str	*next;
 
@@ -160,8 +152,7 @@ static int
 	return (0);
 }
 
-static int
-	read_file(t_str **str)
+static int	read_file(t_str **str)
 {
 	char	buffer[129];
 	int		r;
@@ -179,8 +170,7 @@ static int
 	return (total > 0);
 }
 
-int
-	get_next_line(char **line)
+int	get_next_line(char **line)
 {
 	static t_str	*buffer = NULL;
 	int				read_ret;
