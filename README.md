@@ -33,6 +33,9 @@ If you want to get evaluated by your neighbor, let him post a slot on his pc and
 - PC's memory is full:
   - delete the contents of ~/Library/Caches
 
+
+## Handy commands
+- check your username and email $ git config --list
 <br>
 
 ___
